@@ -1,5 +1,10 @@
 # Gbone.js
 
+__Urban Dictionary definition__ - 
+> Found deep within the woman; if broken it will lead to instant death. This bone joins the base of the spine to the G-spot and can be dislodged as a result of deep penetration or rough sex.
+
+_Note: This definition was NOT the inspiration for Gbone.js_
+
 Gbone.js is a framework written on top of [Backbone](https://github.com/documentcloud/backbone/) for building mobile JavaScript applications.
 
 This project is heavily inspired by [Spine.Mobile](http://spinejs.com/mobile/index), especially the idea of Stages and Panels.  I really liked the framework but since it was built on top of [Spine](http://spinejs.com/), I wanted to write one for Backbone.  Some design patterns such as the `observer` and `cleanup` mixins were also influenced by [ThoughtBot](http://thoughtbot.com/)'s excellent ebook [Backbone.js on Rails](http://workshops.thoughtbot.com/backbone-js-on-rails).
