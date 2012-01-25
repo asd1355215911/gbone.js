@@ -1,7 +1,7 @@
 # Gbone.js
 
 __Urban Dictionary definition__ - 
-> Found deep within the woman; if broken it will lead to instant death. This bone joins the base of the spine to the G-spot and can be dislodged as a result of deep penetration or rough sex.
+> G-Bone: Found deep within the woman; if broken it will lead to instant death. This bone joins the base of the spine to the G-spot and can be dislodged as a result of deep penetration or rough sex.
 
 _Note: This definition was NOT the inspiration for Gbone.js_
 
