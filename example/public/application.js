@@ -3890,56 +3890,52 @@ window.Zepto = Zepto;
 //      Gbone.js 0.1.0
 //      (c) 2011 Gobhi Theivendran
 //      Gbone.js may be freely distributed under the MIT license.
-//      For all details and documentation: 
+//      For all details and documentation:
 //      https://github.com/gobhi/gbone.js
+(function( root, factory ) {
+  // Set up Gbone appropriately for the environment.
+  if ( typeof exports !== 'undefined' ) {
+    // Node/CommonJS, no need for jQuery/Zepto in that case.
+    factory( root, require('backbone'), exports, require('underscore') );
 
+  } else if ( typeof define === 'function' && define.amd ) {
+    // AMD
+    define('gbone', ['underscore', 'backbone', 'zepto', 'exports'], function( _, Backbone, $, exports ) {
+      // Export global even in AMD case in case this script is loaded with
+      // others that may still expect a global GBone.
+      root.Gbone = factory( root, Backbone, exports, _, $ );
+    });
 
-(function($) {
+  } else {
+    // Browser globals
+    root.Gbone = factory( root, Backbone, {}, root._, ( root.jQuery || root.Zepto || root.ender ) );
+  }
+}(this, function( root, Backbone, Gbone, _, $ ) {
   
   // Initial Setup
   // -------------
   
-  var root = this,
-  
-      // The top-level namespace. All public Gbone.js classes will
-      // be attached to this. Exported for both CommonJS and the browser.
-      Gbone,
       // Mixins
-      observer, cleanup, transitions, state,
+  var observer, cleanup, transitions, state,
       // State machine for Panel Views.
       Manager;
-  
-  if (typeof exports !== 'undefined') {
-    Gbone = exports;
-  } else {
-    Gbone = root.Gbone = {};
-  }
 
   // Current version of the library.
   Gbone.VERSION = '0.1.0';
-  
-  // Require Backbone.
-  if (!root.Backbone && (typeof require !== 'undefined')) 
-    root.Backbone = require('backbone');
-  
-  // Require Underscore.
-  if (!root._ && (typeof require !== 'undefined')) 
-    root._ = require('underscore')._;
-  
-  
+
   // Mixins
   // -----------------
   // Each mixin operates on an object's `prototype`.
 
-  // The observer mixin contains behavior for binding to events in a fashion 
+  // The observer mixin contains behavior for binding to events in a fashion
   // that can be cleaned up later.
   //      `this.bindTo(this.collection, 'change', this.render);`
   //      `this.unbindFromAll();`
   //
   observer = function (obj) {
 
-    // On top of binding `event` to `source`, keeps track of all the event 
-    // handlers that are bound.  A single call to `unbindFromAll()` will 
+    // On top of binding `event` to `source`, keeps track of all the event
+    // handlers that are bound.  A single call to `unbindFromAll()` will
     // unbind them.
     obj.bindTo = function (source, event, callback) {
       source.bind(event, callback, this);
@@ -3957,7 +3953,7 @@ window.Zepto = Zepto;
   };
   
   
-  // The cleanup mixin contains set of helpers for adding/managing 
+  // The cleanup mixin contains set of helpers for adding/managing
   // immediate child Views, cleaning up and housekeeping.  Used with the
   // observer mixin.  Maintains an internal array of child Views.
   //
@@ -4386,7 +4382,8 @@ window.Zepto = Zepto;
   
   Gbone.Stage.extend = Gbone.Panel.extend = Backbone.View.extend;
 
-}).call(this, this.Zepto || this.jQuery);
+  return Gbone;
+}));
 (function($){
   App = {
     
